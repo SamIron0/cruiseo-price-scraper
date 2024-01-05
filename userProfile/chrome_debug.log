@@ -1,0 +1,27 @@
+[39908:259:0104/191606.156179:WARNING:chrome_main_delegate.cc(667)] This is Chrome version 120.0.6099.199 (not a warning)
+[39908:259:0104/191606.947314:INFO:policy_logger.cc(144)] :components/enterprise/browser/controller/chrome_browser_cloud_management_controller.cc(168) Starting CBCM Controller Initialization
+[39908:259:0104/191606.947381:INFO:policy_logger.cc(144)] :components/enterprise/browser/controller/chrome_browser_cloud_management_controller.cc(196) No machine level policy manager exists.
+[39913:259:0104/191609.424585:ERROR:shared_image_manager.cc(272)] SharedImageManager::ProduceOverlay: Trying to Produce a Overlay representation from a non-existent mailbox.
+[39913:259:0104/191609.424710:ERROR:skia_output_device_buffer_queue.cc(372)] Invalid mailbox.
+[39913:259:0104/191609.424758:ERROR:shared_image_manager.cc(272)] SharedImageManager::ProduceOverlay: Trying to Produce a Overlay representation from a non-existent mailbox.
+[39913:259:0104/191609.424798:ERROR:skia_output_device_buffer_queue.cc(372)] Invalid mailbox.
+[39913:259:0104/191609.424839:ERROR:shared_image_manager.cc(272)] SharedImageManager::ProduceOverlay: Trying to Produce a Overlay representation from a non-existent mailbox.
+[39913:259:0104/191609.424878:ERROR:skia_output_device_buffer_queue.cc(372)] Invalid mailbox.
+[39913:259:0104/191609.424919:ERROR:shared_image_manager.cc(272)] SharedImageManager::ProduceOverlay: Trying to Produce a Overlay representation from a non-existent mailbox.
+[39913:259:0104/191609.424958:ERROR:skia_output_device_buffer_queue.cc(372)] Invalid mailbox.
+[39913:259:0104/191609.425000:ERROR:shared_image_manager.cc(272)] SharedImageManager::ProduceOverlay: Trying to Produce a Overlay representation from a non-existent mailbox.
+[39913:259:0104/191609.425038:ERROR:skia_output_device_buffer_queue.cc(372)] Invalid mailbox.
+[39913:259:0104/191609.425507:ERROR:shared_image_manager.cc(272)] SharedImageManager::ProduceOverlay: Trying to Produce a Overlay representation from a non-existent mailbox.
+[39913:259:0104/191609.425564:ERROR:skia_output_device_buffer_queue.cc(372)] Invalid mailbox.
+[39913:259:0104/191609.425659:ERROR:shared_image_manager.cc(272)] SharedImageManager::ProduceOverlay: Trying to Produce a Overlay representation from a non-existent mailbox.
+[39913:259:0104/191609.425708:ERROR:skia_output_device_buffer_queue.cc(372)] Invalid mailbox.
+[39913:259:0104/191609.425774:ERROR:shared_image_manager.cc(272)] SharedImageManager::ProduceOverlay: Trying to Produce a Overlay representation from a non-existent mailbox.
+[39913:259:0104/191609.425827:ERROR:skia_output_device_buffer_queue.cc(372)] Invalid mailbox.
+[39913:259:0104/191609.425847:ERROR:shared_image_manager.cc(272)] SharedImageManager::ProduceOverlay: Trying to Produce a Overlay representation from a non-existent mailbox.
+[39913:259:0104/191609.425866:ERROR:skia_output_device_buffer_queue.cc(372)] Invalid mailbox.
+[39913:259:0104/191609.425884:ERROR:shared_image_manager.cc(272)] SharedImageManager::ProduceOverlay: Trying to Produce a Overlay representation from a non-existent mailbox.
+[39913:259:0104/191609.425901:ERROR:skia_output_device_buffer_queue.cc(372)] Invalid mailbox.
+[39914:14595:0104/191609.464181:WARNING:pref_notifier_impl.cc(60)] Init observer found at shutdown.
+[39914:17155:0104/191609.589392:WARNING:sqlite_persistent_store_backend_base.cc(198)] Failed to post task from FlushAndNotifyInBackground@net/extras/sqlite/sqlite_persistent_store_backend_base.cc:246 to client_task_runner_.
+[39914:17155:0104/191609.606424:WARNING:sqlite_persistent_store_backend_base.cc(198)] Failed to post task from FlushAndNotifyInBackground@net/extras/sqlite/sqlite_persistent_store_backend_base.cc:246 to client_task_runner_.
+[39908:259:0104/191609.712624:WARNING:pref_notifier_impl.cc(41)] Pref observer for media_router.cast_allow_all_ips found at shutdown.
