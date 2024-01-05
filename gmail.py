@@ -2,10 +2,14 @@ import imaplib
 import email
 from email.header import decode_header
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 imap_ssl_host = "imap.gmail.com"
 imap_ssl_port = 993
 username = "samuelironkwec@gmail.com"
+
+# Load environment variables from .env file
 
 password = os.getenv("GMAIL_PASSWORD")
 
@@ -15,6 +19,7 @@ def fetch_most_recent_email_subject():
     # Connect to Gmail IMAP server
     with imaplib.IMAP4_SSL(imap_ssl_host) as mail:
         # Log in to the Gmail account using App Password
+        print(f"Password: {password}")
         mail.login(username, password)
 
         # Select the 'inbox' folder
