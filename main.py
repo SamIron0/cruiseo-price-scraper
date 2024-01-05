@@ -13,7 +13,6 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 username = "bteardg7tn@privaterelay.appleid.com"
-userProfile = ""
 
 options = webdriver.ChromeOptions()
 options.add_argument("user-data-dir=/Users/sam/Documents/uber-price/userProfile")
