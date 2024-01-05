@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By  # Import the By class
+from selenium.common.exceptions import NoSuchElementException
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -11,6 +12,15 @@ from selenium.webdriver.support import expected_conditions as EC
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+from bs4 import BeautifulSoup  # Import BeautifulSoup
+import time
+import imaplib
+import email
+from email.header import decode_header
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 username = "bteardg7tn@privaterelay.appleid.com"
 
@@ -37,34 +47,61 @@ chromedriver = "C:/Users/Home Admin/Desktop/uber_local_scrape/chromedriver.exe"
 os.environ["webdriver.chrome.driver"] = chromedriver
 driver = webdriver.Chrome(options=options)
 
+imap_ssl_host = "imap.gmail.com"
+imap_ssl_port = 993
+username = "samuelironkwec@gmail.com"
+
+password = os.getenv("GMAIL_PASSWORD")
+
+
+import time
+
 
 def getEmailCode():
-    SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
-    SERVICE_ACCOUNT_FILE = "/Users/sam/Documents/fitpal-397800-29cc4dd68dd5.json"  # Update this with the actual path
+    time.sleep(4)
+    # Connect to Gmail IMAP server
+    with imaplib.IMAP4_SSL(imap_ssl_host) as mail:
+        # Log in to the Gmail account using App Password
+        mail.login(username, password)
 
-    # Load the service account credentials
-    credentials = service_account.Credentials.from_service_account_file(
-        SERVICE_ACCOUNT_FILE, scopes=SCOPES
-    )
+        # Select the 'inbox' folder
+        mail.select("inbox")
 
-    # Build the Gmail API service
-    service = build("gmail", "v1", credentials=credentials)
+        # Search for all emails in the 'inbox'
+        result, data = mail.search(None, "ALL")
+        email_ids = data[0].split()
 
-    # ...
+        for email_id in reversed(email_ids):
+            # Fetch the email using its ID
+            result, message_data = mail.fetch(email_id, "(RFC822)")
 
-    try:
-        # Retrieve a list of messages
-        results = service.users().messages().list(userId="me").execute()
-        messages = results.get("messages", [])
+            if result == "OK":
+                # Decode the email message
+                msg = email.message_from_bytes(message_data[0][1])
 
-        # Print message details
-        for message in messages:
-            msg = (
-                service.users().messages().get(userId="me", id=message["id"]).execute()
-            )
-            print(msg["snippet"])
-    except HttpError as error:
-        print(f"An error occurred: {error.content}")
+                # Extract the subject
+                subject, encoding = decode_header(msg["Subject"])[0]
+
+                # Check if the subject matches the desired subject
+                if subject and "Your Uber account verification code" in subject:
+                    # Get the body of the email
+                    email_body = msg.get_payload(decode=True).decode("utf-8")
+
+                    # Extract the verification code using BeautifulSoup
+                    soup = BeautifulSoup(email_body, "html.parser")
+                    number_element = soup.find("td", class_="p2b")
+
+                    if number_element:
+                        code_value = number_element.text.strip()
+                        print("Verification Code:", code_value)
+
+                        # Exit the loop after finding the first email with the desired subject
+                        return code_value
+            else:
+                print("Error fetching the most recent email.")
+
+    print("No verification code found after multiple attempts.")
+    return None
 
 
 def generate_uber_url(drop, pickup, vehicle):
@@ -104,39 +141,86 @@ pickup_location = {
 }
 
 
-def download():
-# vehicle type doesnt need to  be defined
+def login():
+    print("########### Signing in to Uber Webpage")
+
+    # vehicle type doesnt need to  be defined
     vehicle_type = ""
 
     # Generate the Uber Selection URL
     uber_selection_url = generate_uber_url(drop_location, pickup_location, vehicle_type)
+
     try:
         driver.get(uber_selection_url)
-        # Add this after driver.get(uber_selection_url)
-        with open("source.html", "w", encoding="utf-8") as file:
-            file.write(driver.page_source)
 
-        print(f"Page source saved to source.html")
+    except:
+        print("ERROR: Did not get Link")
+        pass
+    # time.sleep(50)
+
+    email_input = driver.find_element(By.ID, "PHONE_NUMBER_or_EMAIL_ADDRESS")
+    email_input.send_keys("samuelironkwec@gmail.com")
+
+    continue_button = driver.find_element(By.ID, "forward-button")
+    continue_button.click()
+    verification_code = getEmailCode()
+
+    # after clicking continue, get the code from gmail
+    # print(code)
+    otp_input_ids = [
+        "EMAIL_OTP_CODE-0",
+        "EMAIL_OTP_CODE-1",
+        "EMAIL_OTP_CODE-2",
+        "EMAIL_OTP_CODE-3",
+    ]
+    for i in range(min(len(verification_code), len(otp_input_ids))):
+        otp_input = driver.find_element(By.ID, otp_input_ids[i])
+        otp_input.send_keys(verification_code[i])
+    continue_button = driver.find_element(By.ID, "forward-button")
+    # Click the forward button
+    continue_button.click()
+
+
+def download():
+    # get the data
+    print("########### Fetching Elements from Uber Webpage")
+    try:
+        price = WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,
+            "/html/body/div[1]/div/div/div[1]/div/main/div/section/div[2]/ul/li[1]/div[2]/div/div[1]/div",
+        ))
+        )
+        return price
+
+        # Write the formatted page source to a file
+    except Exception as e:
+        print(f"Error retrieving data: {e}")
+
+
+if __name__ == "__main__":
+    # Check if the element is found
+    vehicle_type="UberX"
+    uber_selection_url = generate_uber_url(drop_location, pickup_location, vehicle_type)
+    try:
+        driver.get(uber_selection_url)
 
     except:
         print("ERROR: Did not get Link")
         pass
 
-    temp = []
-
-    print("########### Fetching Elements from Uber Webpage")
-
     try:
-        price = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CLASS_NAME, "_css-bIszFv"))
+        # Check for the presence of the element
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.XPATH,
+            "/html/body/div[1]/div/div/div[1]/div/main/div/section/div[2]/ul/li[1]/div[2]/div/div[1]/div",
+        ))
         )
+        # If the element is found, download directly
+        price = download()
+        print(price.text)
 
-        # Write the formatted page source to a file
-    except Exception as e:
-        print(f"Error saving page source: {e}")
-
-    return temp
-
-
-if __name__ == "__main__":
-    data = getEmailCode()
+    except NoSuchElementException:
+        # If the element is not found, assume not logged in, then login and download
+        login()
+        price = download()
+        print(price)
