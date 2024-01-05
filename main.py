@@ -186,9 +186,12 @@ def download():
     print("########### Fetching Elements from Uber Webpage")
     try:
         price = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.XPATH,
-            "/html/body/div[1]/div/div/div[1]/div/main/div/section/div[2]/ul/li[1]/div[2]/div/div[1]/div",
-        ))
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    "/html/body/div[1]/div/div/div[1]/div/main/div/section/div[2]/ul/li[1]/div[2]/div/div[1]/div",
+                )
+            )
         )
         return price
 
@@ -199,7 +202,7 @@ def download():
 
 if __name__ == "__main__":
     # Check if the element is found
-    vehicle_type="UberX"
+    vehicle_type = "UberX"
     uber_selection_url = generate_uber_url(drop_location, pickup_location, vehicle_type)
     try:
         driver.get(uber_selection_url)
@@ -210,17 +213,20 @@ if __name__ == "__main__":
 
     try:
         # Check for the presence of the element
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.XPATH,
-            "/html/body/div[1]/div/div/div[1]/div/main/div/section/div[2]/ul/li[1]/div[2]/div/div[1]/div",
-        ))
+        WebDriverWait(driver, 2).until(
+            EC.presence_of_element_located(
+                (
+                    By.XPATH,
+                    "/html/body/div[1]/div/div/div[1]/div/main/div/section/div[2]/ul/li[1]/div[2]/div/div[1]/div",
+                )
+            )
         )
         # If the element is found, download directly
         price = download()
-        print(price.text)
-
-    except NoSuchElementException:
+        print("trip price: " + price.text)
+        #time.sleep(1000)
+    except Exception as e:
         # If the element is not found, assume not logged in, then login and download
         login()
         price = download()
-        print(price)
+        print("trip price: " + price.text)
