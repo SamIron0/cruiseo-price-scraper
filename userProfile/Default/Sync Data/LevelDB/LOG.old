@@ -1,3 +1,2 @@
-2024/01/04-19:13:18.042 f103 Reusing MANIFEST /Users/sam/Documents/uber-price/userProfile/Default/Sync Data/LevelDB/MANIFEST-000001
-2024/01/04-19:13:18.048 f103 Recovering log #3
-2024/01/04-19:13:18.055 f103 Reusing old log /Users/sam/Documents/uber-price/userProfile/Default/Sync Data/LevelDB/000003.log 
+2024/01/05-14:46:41.319 b503 Creating DB /Users/sam/Documents/cruiseo-price/userProfile/Default/Sync Data/LevelDB since it was missing.
+2024/01/05-14:46:41.427 b503 Reusing MANIFEST /Users/sam/Documents/cruiseo-price/userProfile/Default/Sync Data/LevelDB/MANIFEST-000001

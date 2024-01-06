@@ -1,3 +1,2 @@
-2024/01/04-19:13:18.055 f003 Reusing MANIFEST /Users/sam/Documents/uber-price/userProfile/Default/Site Characteristics Database/MANIFEST-000001
-2024/01/04-19:13:18.057 f003 Recovering log #3
-2024/01/04-19:13:18.064 f003 Reusing old log /Users/sam/Documents/uber-price/userProfile/Default/Site Characteristics Database/000003.log 
+2024/01/05-14:46:41.367 b703 Creating DB /Users/sam/Documents/cruiseo-price/userProfile/Default/Site Characteristics Database since it was missing.
+2024/01/05-14:46:41.480 b703 Reusing MANIFEST /Users/sam/Documents/cruiseo-price/userProfile/Default/Site Characteristics Database/MANIFEST-000001

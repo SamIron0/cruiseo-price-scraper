@@ -1,3 +1,5 @@
-2024/01/04-19:13:18.773 3d03 Reusing MANIFEST /Users/sam/Documents/uber-price/userProfile/Default/Session Storage/MANIFEST-000001
-2024/01/04-19:13:18.778 3d03 Recovering log #3
-2024/01/04-19:13:18.779 3d03 Reusing old log /Users/sam/Documents/uber-price/userProfile/Default/Session Storage/000003.log 
+2024/01/05-15:41:53.831 6603 Reusing MANIFEST /Users/sam/Documents/cruiseo-price/userProfile/Default/Session Storage/MANIFEST-000001
+2024/01/05-15:41:53.832 6603 Recovering log #3
+2024/01/05-15:41:53.832 6603 Level-0 table #3: started
+2024/01/05-15:41:53.855 6603 Level-0 table #3: 27818 bytes OK
+2024/01/05-15:41:53.896 6603 Delete type=0 #3

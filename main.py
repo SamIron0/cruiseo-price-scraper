@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By  # Import the By class
 from selenium.common.exceptions import NoSuchElementException
-
+from selenium.common.exceptions import TimeoutException
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import os
@@ -25,10 +25,9 @@ load_dotenv()
 username = "bteardg7tn@privaterelay.appleid.com"
 
 options = webdriver.ChromeOptions()
-options.add_argument("user-data-dir=/Users/sam/Documents/uber-price/userProfile")
-# add here any tag you want.
-#
-# options.add_argument("--headless")  # Add this line for headless mode
+options.add_argument("user-data-dir=/Users/sam/Documents/cruiseo-price/userProfile")
+# add here any tag you want
+options.add_argument("--headless")  # Add this line for headless mode
 options.add_argument(
     "--window-size=600,600"
 )  # Replace with your desired width and height
@@ -200,7 +199,7 @@ def download():
         print(f"Error retrieving data: {e}")
 
 
-if __name__ == "__main__":
+def scraper():
     # Check if the element is found
     vehicle_type = "UberX"
     uber_selection_url = generate_uber_url(drop_location, pickup_location, vehicle_type)
@@ -213,7 +212,7 @@ if __name__ == "__main__":
 
     try:
         # Check for the presence of the element
-        WebDriverWait(driver, 2).until(
+        WebDriverWait(driver, 4).until(
             EC.presence_of_element_located(
                 (
                     By.XPATH,
@@ -223,10 +222,21 @@ if __name__ == "__main__":
         )
         # If the element is found, download directly
         price = download()
-        print("trip price: " + price.text)
-        #time.sleep(1000)
-    except Exception as e:
-        # If the element is not found, assume not logged in, then login and download
-        login()
-        price = download()
-        print("trip price: " + price.text)
+        return "trip price: " + price.text
+
+    except TimeoutException:
+        # Handle the timeout exception here
+        print("Timeout exception occurred. Assuming not logged in.")
+        try:
+            login()
+            price = download()
+
+        except NoSuchElementException as e:
+            print("login failed")
+            price = download()
+
+        return "trip price: " + price.text
+
+
+if __name__ == "__main__":
+    scraper()
