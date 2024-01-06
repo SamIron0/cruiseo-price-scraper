@@ -212,7 +212,7 @@ def scraper():
 
     try:
         # Check for the presence of the element
-        WebDriverWait(driver, 4).until(
+        WebDriverWait(driver, 10).until(
             EC.presence_of_element_located(
                 (
                     By.XPATH,
