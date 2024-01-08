@@ -22,15 +22,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-username = "bteardg7tn@privaterelay.appleid.com"
 
 options = webdriver.ChromeOptions()
-options.add_argument("user-data-dir=/Users/sam/Documents/cruiseo-price/userProfile")
-# add here any tag you want
-options.add_argument("--headless")  # Add this line for headless mode
+options.add_argument("user-data-dir=./userProfile")
+options.add_argument("--headless")
 options.add_argument(
     "--window-size=600,600"
-)  # Replace with your desired width and height
+)
 
 options.add_experimental_option(
     "excludeSwitches",
@@ -42,15 +40,14 @@ options.add_experimental_option(
     ],
 )
 # LINK TO Chromediver goes here (Need to change)
-chromedriver = "C:/Users/Home Admin/Desktop/uber_local_scrape/chromedriver.exe"
+chromedriver = "./chromedriver-mac-x64/chromedriver"
 os.environ["webdriver.chrome.driver"] = chromedriver
 driver = webdriver.Chrome(options=options)
 
 imap_ssl_host = "imap.gmail.com"
 imap_ssl_port = 993
-username = "samuelironkwec@gmail.com"
-
-password = os.getenv("GMAIL_PASSWORD")
+gmail = "fatitomifin@gmail.com"
+password = "miph lfrq punz jjnz"
 
 
 import time
@@ -61,7 +58,8 @@ def getEmailCode():
     # Connect to Gmail IMAP server
     with imaplib.IMAP4_SSL(imap_ssl_host) as mail:
         # Log in to the Gmail account using App Password
-        mail.login(username, password)
+        mail.login(gmail, password)
+        print("########### Signed in to Gmail")
 
         # Select the 'inbox' folder
         mail.select("inbox")
@@ -158,13 +156,15 @@ def login():
     # time.sleep(50)
 
     email_input = driver.find_element(By.ID, "PHONE_NUMBER_or_EMAIL_ADDRESS")
-    email_input.send_keys("samuelironkwec@gmail.com")
-
+    email_input.send_keys(gmail)
     continue_button = driver.find_element(By.ID, "forward-button")
     continue_button.click()
     verification_code = getEmailCode()
 
-    # after clicking continue, get the code from gmail
+        
+    with open("source.html", "w", encoding="utf-8") as file:
+        file.write(driver.page_source)
+        # after clicking continue, get the code from gmail
     # print(code)
     otp_input_ids = [
         "EMAIL_OTP_CODE-0",
@@ -178,13 +178,14 @@ def login():
     continue_button = driver.find_element(By.ID, "forward-button")
     # Click the forward button
     continue_button.click()
+    print("########### Signed in to Uber Webpage")
 
 
 def download():
     # get the data
     print("########### Fetching Elements from Uber Webpage")
     try:
-        price = WebDriverWait(driver, 10).until(
+        price = WebDriverWait(driver, 20).until(
             EC.presence_of_element_located(
                 (
                     By.XPATH,
@@ -212,7 +213,7 @@ def scraper():
 
     try:
         # Check for the presence of the element
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 20).until(
             EC.presence_of_element_located(
                 (
                     By.XPATH,
@@ -233,10 +234,11 @@ def scraper():
 
         except NoSuchElementException as e:
             print("login failed")
-            price = download()
+            return
 
         return "trip price: " + price.text
 
 
 if __name__ == "__main__":
     scraper()
+    time.sleep(100)
