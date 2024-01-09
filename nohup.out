@@ -1,8 +1,528 @@
-nohup: ./ngrok: No such file or directory
-[2024-01-09 14:28:15 -0600] [20101] [INFO] Starting gunicorn 21.2.0
-[2024-01-09 14:28:15 -0600] [20101] [INFO] Listening at: http://127.0.0.1:8000 (20101)
-[2024-01-09 14:28:15 -0600] [20101] [INFO] Using worker: sync
-[2024-01-09 14:28:15 -0600] [20110] [INFO] Booting worker with pid: 20110
-[2024-01-09 14:28:15 -0600] [20111] [INFO] Booting worker with pid: 20111
-[2024-01-09 14:28:15 -0600] [20112] [INFO] Booting worker with pid: 20112
-[2024-01-09 14:28:15 -0600] [20113] [INFO] Booting worker with pid: 20113
+[2024-01-09 15:18:46 -0600] [23651] [INFO] Starting gunicorn 21.2.0
+[2024-01-09 15:18:46 -0600] [23651] [INFO] Listening at: http://0.0.0.0:8000 (23651)
+[2024-01-09 15:18:46 -0600] [23651] [INFO] Using worker: sync
+[2024-01-09 15:18:46 -0600] [23654] [INFO] Booting worker with pid: 23654
+[2024-01-09 15:18:46 -0600] [23655] [INFO] Booting worker with pid: 23655
+[2024-01-09 15:18:46 -0600] [23656] [INFO] Booting worker with pid: 23656
+NAME:
+  http - start an HTTP tunnel
+
+USAGE:
+  ngrok http [address:port | port] [flags]
+
+DESCRIPTION: 
+  Starts a tunnel listening for HTTP/HTTPS traffic with a specific hostname.
+  The HTTP Host header on incoming public requests is inspected to
+  determine which tunnel it matches.
+
+  HTTPS endpoints terminate TLS traffic at the ngrok server using the
+  appropriate certificates. The decrypted, HTTP traffic is then forwarded
+  through the secure tunnel and then to your local server. If you don't want
+  your TLS traffic to terminate at the ngrok server, use a TLS or TCP tunnel.
+
+TERMS OF SERVICE: https://ngrok.com/tos
+
+EXAMPLES: 
+  ngrok http 8080                             # forward ngrok subdomain to port 80
+  ngrok http example.com:9000                 # forward traffic to example.com:9000
+  ngrok http --domain=bar.ngrok.dev 80        # request subdomain name: 'bar.ngrok.dev'
+  ngrok http --domain=example.com 1234        # request tunnel 'example.com' (DNS CNAME)
+  ngrok http --basic-auth='falken:joshua' 80  # enforce basic auth on tunnel endpoint
+  ngrok http --host-header=example.com 80     # rewrite the Host header to 'example.com'
+  ngrok http file:///var/log                  # serve local files in /var/log
+  ngrok http https://localhost:8443           # forward to a local https server
+
+OPTIONS:
+      --app-protocol string              Set application protocol: 'http2'
+      --authtoken string                 ngrok.com authtoken identifying a user
+      --basic-auth strings               enforce basic auth on tunnel endpoint, 'user:password'
+      --cidr-allow strings               reject connections that do not match the given CIDRs
+      --cidr-deny strings                reject connections that match the given CIDRs
+      --circuit-breaker float            reject requests when 5XX responses exceed this ratio
+      --compression                      gzip compress http responses from your web service
+      --config strings                   path to config files; they are merged if multiple
+      --domain string                    host tunnel on a custom subdomain or hostname (requires DNS CNAME)
+  -h, --help                             help for http
+      --host-header string               set Host header; if 'rewrite' use local address hostname
+      --inspect                          enable/disable http introspection (default true) (default <nil>)
+      --log string                       path to log file, 'stdout', 'stderr' or 'false' (default "false")
+      --log-format string                log record format: 'term', 'logfmt', 'json' (default "term")
+      --log-level string                 logging level: 'debug', 'info', 'warn', 'error', 'crit' (default "info")
+      --mutual-tls-cas string            path to TLS certificate authority to verify client certs in mutual tls
+      --oauth string                     enforce authentication oauth provider on tunnel endpoint, e.g. 'google'
+      --oauth-allow-domain strings       allow only oauth users with these email domains
+      --oauth-allow-email strings        allow only oauth users with these emails
+      --oauth-client-id string           oauth app client id, optional
+      --oauth-client-secret string       oauth app client secret, optional
+      --oauth-scope strings              request these oauth scopes when users authenticate
+      --oidc string                      oidc issuer url, e.g. https://accounts.google.com
+      --oidc-client-id string            oidc app client id
+      --oidc-client-secret string        oidc app client secret
+      --oidc-scope strings               request these oidc scopes when users authenticate
+      --proxy-proto string               version of proxy proto to use with this tunnel, empty if not using
+      --request-header-add strings       header key:value to add to request
+      --request-header-remove strings    header field to remove from request if present
+      --response-header-add strings      header key:value to add to response
+      --response-header-remove strings   header field to remove from response if present
+      --scheme strings                   which schemes to listen on (default [https])
+      --ua-filter-allow strings          a list of regular expressions for user-agents to allow
+      --ua-filter-deny strings           a list of regular expressions for user-agents to deny
+      --upstream-tls-verify              enables TLS verification of server TLS certificates
+      --upstream-tls-verify-cas string   path to CA cert to use to verify server certs
+      --verify-webhook string            validate webhooks are signed by this provider, e.g. 'slack'
+      --verify-webhook-secret string     secret used by provider to sign webhooks, if any
+      --websocket-tcp-converter          convert ingress websocket connections to TCP upstream
+
+ERROR:  authentication failed: Your account is limited to 1 simultaneous ngrok agent session.
+ERROR:  You can run multiple tunnels on a single agent session using a configuration file.
+ERROR:  To learn more, see https://ngrok.com/docs/secure-tunnels/ngrok-agent/reference/config/
+ERROR:  
+ERROR:  Active ngrok agent sessions in region 'us':
+ERROR:    - ts_2ajVvsqFCD8rJ4OkyIHUAgl2vKs (66.244.231.114)
+ERROR:  
+ERROR:  ERR_NGROK_108
+ERROR:  
+[2024-01-09 15:20:35 -0600] [23651] [ERROR] Worker (pid:23656) was sent SIGHUP!
+[2024-01-09 15:20:35 -0600] [23651] [ERROR] Worker (pid:23654) was sent SIGHUP!
+[2024-01-09 15:20:35 -0600] [23651] [ERROR] Worker (pid:23655) was sent SIGHUP!
+[2024-01-09 15:20:35 -0600] [23651] [INFO] Handling signal: hup
+[2024-01-09 15:20:35 -0600] [23651] [INFO] Hang up: Master
+[2024-01-09 15:20:35 -0600] [23879] [INFO] Booting worker with pid: 23879
+[2024-01-09 15:20:35 -0600] [23880] [INFO] Booting worker with pid: 23880
+[2024-01-09 15:20:35 -0600] [23881] [INFO] Booting worker with pid: 23881
+[2024-01-09 15:20:38 -0600] [23879] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+  File "/opt/anaconda3/lib/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1014, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 783, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/Users/sam/Documents/app.0.1/app.py", line 2, in <module>
+    from main import scraper as scraper_script
+  File "/Users/sam/Documents/app.0.1/main.py", line 45, in <module>
+    driver = webdriver.Chrome(options=options)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/chromium/webdriver.py", line 61, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 209, in __init__
+    self.start_session(capabilities)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 293, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 348, in execute
+    self.error_handler.check_response(response)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: cannot parse internal JSON template: Line: 1, column: 1, Unexpected token.
+Stacktrace:
+0   chromedriver                        0x0000000108585cc8 chromedriver + 4844744
+1   chromedriver                        0x000000010857d243 chromedriver + 4809283
+2   chromedriver                        0x000000010814b77d chromedriver + 411517
+3   chromedriver                        0x000000010818764a chromedriver + 656970
+4   chromedriver                        0x0000000108187b8a chromedriver + 658314
+5   chromedriver                        0x0000000108182424 chromedriver + 635940
+6   chromedriver                        0x000000010817fd55 chromedriver + 626005
+7   chromedriver                        0x00000001081d1833 chromedriver + 960563
+8   chromedriver                        0x00000001081c5a63 chromedriver + 911971
+9   chromedriver                        0x000000010818d1b3 chromedriver + 680371
+10  chromedriver                        0x000000010818e7ce chromedriver + 686030
+11  chromedriver                        0x0000000108545642 chromedriver + 4580930
+12  chromedriver                        0x000000010854a9cc chromedriver + 4602316
+13  chromedriver                        0x000000010852ae11 chromedriver + 4472337
+14  chromedriver                        0x000000010854b746 chromedriver + 4605766
+15  chromedriver                        0x000000010851c39c chromedriver + 4412316
+16  chromedriver                        0x000000010856b868 chromedriver + 4737128
+17  chromedriver                        0x000000010856ba1e chromedriver + 4737566
+18  chromedriver                        0x000000010857ce83 chromedriver + 4808323
+19  libsystem_pthread.dylib             0x00007ff807159259 _pthread_start + 125
+20  libsystem_pthread.dylib             0x00007ff807154c7b thread_start + 15
+
+[2024-01-09 15:20:38 -0600] [23879] [INFO] Worker exiting (pid: 23879)
+[2024-01-09 15:20:39 -0600] [23651] [ERROR] Worker (pid:23879) exited with code 3
+[2024-01-09 15:20:39 -0600] [23880] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+  File "/opt/anaconda3/lib/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1014, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 783, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/Users/sam/Documents/app.0.1/app.py", line 2, in <module>
+    from main import scraper as scraper_script
+  File "/Users/sam/Documents/app.0.1/main.py", line 45, in <module>
+    driver = webdriver.Chrome(options=options)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/chromium/webdriver.py", line 61, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 209, in __init__
+    self.start_session(capabilities)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 293, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 348, in execute
+    self.error_handler.check_response(response)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome failed to start: exited normally.
+  (session not created: DevToolsActivePort file doesn't exist)
+  (The process started from chrome location /Applications/Google Chrome.app/Contents/MacOS/Google Chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.)
+Stacktrace:
+0   chromedriver                        0x000000010924acc8 chromedriver + 4844744
+1   chromedriver                        0x0000000109242243 chromedriver + 4809283
+2   chromedriver                        0x0000000108e1077d chromedriver + 411517
+3   chromedriver                        0x0000000108e48849 chromedriver + 641097
+4   chromedriver                        0x0000000108e44d55 chromedriver + 626005
+5   chromedriver                        0x0000000108e96833 chromedriver + 960563
+6   chromedriver                        0x0000000108e8aa63 chromedriver + 911971
+7   chromedriver                        0x0000000108e521b3 chromedriver + 680371
+8   chromedriver                        0x0000000108e537ce chromedriver + 686030
+9   chromedriver                        0x000000010920a642 chromedriver + 4580930
+10  chromedriver                        0x000000010920f9cc chromedriver + 4602316
+11  chromedriver                        0x00000001091efe11 chromedriver + 4472337
+12  chromedriver                        0x0000000109210746 chromedriver + 4605766
+13  chromedriver                        0x00000001091e139c chromedriver + 4412316
+14  chromedriver                        0x0000000109230868 chromedriver + 4737128
+15  chromedriver                        0x0000000109230a1e chromedriver + 4737566
+16  chromedriver                        0x0000000109241e83 chromedriver + 4808323
+17  libsystem_pthread.dylib             0x00007ff807159259 _pthread_start + 125
+18  libsystem_pthread.dylib             0x00007ff807154c7b thread_start + 15
+
+[2024-01-09 15:20:39 -0600] [23880] [INFO] Worker exiting (pid: 23880)
+[2024-01-09 15:20:39 -0600] [23881] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+  File "/opt/anaconda3/lib/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1014, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 783, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/Users/sam/Documents/app.0.1/app.py", line 2, in <module>
+    from main import scraper as scraper_script
+  File "/Users/sam/Documents/app.0.1/main.py", line 45, in <module>
+    driver = webdriver.Chrome(options=options)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/chromium/webdriver.py", line 61, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 209, in __init__
+    self.start_session(capabilities)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 293, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 348, in execute
+    self.error_handler.check_response(response)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome failed to start: exited normally.
+  (session not created: DevToolsActivePort file doesn't exist)
+  (The process started from chrome location /Applications/Google Chrome.app/Contents/MacOS/Google Chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.)
+Stacktrace:
+0   chromedriver                        0x000000010d6e1cc8 chromedriver + 4844744
+1   chromedriver                        0x000000010d6d9243 chromedriver + 4809283
+2   chromedriver                        0x000000010d2a777d chromedriver + 411517
+3   chromedriver                        0x000000010d2df849 chromedriver + 641097
+4   chromedriver                        0x000000010d2dbd55 chromedriver + 626005
+5   chromedriver                        0x000000010d32d833 chromedriver + 960563
+6   chromedriver                        0x000000010d321a63 chromedriver + 911971
+7   chromedriver                        0x000000010d2e91b3 chromedriver + 680371
+8   chromedriver                        0x000000010d2ea7ce chromedriver + 686030
+9   chromedriver                        0x000000010d6a1642 chromedriver + 4580930
+10  chromedriver                        0x000000010d6a69cc chromedriver + 4602316
+11  chromedriver                        0x000000010d686e11 chromedriver + 4472337
+12  chromedriver                        0x000000010d6a7746 chromedriver + 4605766
+13  chromedriver                        0x000000010d67839c chromedriver + 4412316
+14  chromedriver                        0x000000010d6c7868 chromedriver + 4737128
+15  chromedriver                        0x000000010d6c7a1e chromedriver + 4737566
+16  chromedriver                        0x000000010d6d8e83 chromedriver + 4808323
+17  libsystem_pthread.dylib             0x00007ff807159259 _pthread_start + 125
+18  libsystem_pthread.dylib             0x00007ff807154c7b thread_start + 15
+
+[2024-01-09 15:20:39 -0600] [23881] [INFO] Worker exiting (pid: 23881)
+[2024-01-09 15:20:40 -0600] [23651] [ERROR] Worker (pid:23880) exited with code 3
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/arbiter.py", line 209, in run
+    self.sleep()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/arbiter.py", line 360, in sleep
+    ready = select.select([self.PIPE[0]], [], [], 1.0)
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/arbiter.py", line 530, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/anaconda3/bin/gunicorn", line 8, in <module>
+    sys.exit(run())
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/wsgiapp.py", line 67, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/base.py", line 236, in run
+    super().run()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/arbiter.py", line 229, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/arbiter.py", line 342, in halt
+    self.stop()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/arbiter.py", line 396, in stop
+    time.sleep(0.1)
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/arbiter.py", line 530, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+[2024-01-09 15:30:31 -0600] [24878] [INFO] Starting gunicorn 21.2.0
+[2024-01-09 15:30:31 -0600] [24878] [INFO] Listening at: http://0.0.0.0:8000 (24878)
+[2024-01-09 15:30:31 -0600] [24878] [INFO] Using worker: sync
+[2024-01-09 15:30:31 -0600] [24881] [INFO] Booting worker with pid: 24881
+[2024-01-09 15:30:31 -0600] [24882] [INFO] Booting worker with pid: 24882
+[2024-01-09 15:30:31 -0600] [24883] [INFO] Booting worker with pid: 24883
+[2024-01-09 15:30:33 -0600] [24883] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+  File "/opt/anaconda3/lib/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1014, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 783, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/Users/sam/Documents/app.0.1/app.py", line 2, in <module>
+    from main import scraper as scraper_script
+  File "/Users/sam/Documents/app.0.1/main.py", line 45, in <module>
+    driver = webdriver.Chrome(options=options)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/chromium/webdriver.py", line 61, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 209, in __init__
+    self.start_session(capabilities)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 293, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 348, in execute
+    self.error_handler.check_response(response)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome failed to start: exited normally.
+  (session not created: DevToolsActivePort file doesn't exist)
+  (The process started from chrome location /Applications/Google Chrome.app/Contents/MacOS/Google Chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.)
+Stacktrace:
+0   chromedriver                        0x000000010d391cc8 chromedriver + 4844744
+1   chromedriver                        0x000000010d389243 chromedriver + 4809283
+2   chromedriver                        0x000000010cf5777d chromedriver + 411517
+3   chromedriver                        0x000000010cf8f849 chromedriver + 641097
+4   chromedriver                        0x000000010cf8bd55 chromedriver + 626005
+5   chromedriver                        0x000000010cfdd833 chromedriver + 960563
+6   chromedriver                        0x000000010cfd1a63 chromedriver + 911971
+7   chromedriver                        0x000000010cf991b3 chromedriver + 680371
+8   chromedriver                        0x000000010cf9a7ce chromedriver + 686030
+9   chromedriver                        0x000000010d351642 chromedriver + 4580930
+10  chromedriver                        0x000000010d3569cc chromedriver + 4602316
+11  chromedriver                        0x000000010d336e11 chromedriver + 4472337
+12  chromedriver                        0x000000010d357746 chromedriver + 4605766
+13  chromedriver                        0x000000010d32839c chromedriver + 4412316
+14  chromedriver                        0x000000010d377868 chromedriver + 4737128
+15  chromedriver                        0x000000010d377a1e chromedriver + 4737566
+16  chromedriver                        0x000000010d388e83 chromedriver + 4808323
+17  libsystem_pthread.dylib             0x00007ff807159259 _pthread_start + 125
+18  libsystem_pthread.dylib             0x00007ff807154c7b thread_start + 15
+
+[2024-01-09 15:30:33 -0600] [24883] [INFO] Worker exiting (pid: 24883)
+[2024-01-09 15:30:33 -0600] [24882] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+  File "/opt/anaconda3/lib/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1014, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 783, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/Users/sam/Documents/app.0.1/app.py", line 2, in <module>
+    from main import scraper as scraper_script
+  File "/Users/sam/Documents/app.0.1/main.py", line 45, in <module>
+    driver = webdriver.Chrome(options=options)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/chromium/webdriver.py", line 61, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 209, in __init__
+    self.start_session(capabilities)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 293, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 348, in execute
+    self.error_handler.check_response(response)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome failed to start: exited normally.
+  (session not created: DevToolsActivePort file doesn't exist)
+  (The process started from chrome location /Applications/Google Chrome.app/Contents/MacOS/Google Chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.)
+Stacktrace:
+0   chromedriver                        0x000000010348ecc8 chromedriver + 4844744
+1   chromedriver                        0x0000000103486243 chromedriver + 4809283
+2   chromedriver                        0x000000010305477d chromedriver + 411517
+3   chromedriver                        0x000000010308c849 chromedriver + 641097
+4   chromedriver                        0x0000000103088d55 chromedriver + 626005
+5   chromedriver                        0x00000001030da833 chromedriver + 960563
+6   chromedriver                        0x00000001030cea63 chromedriver + 911971
+7   chromedriver                        0x00000001030961b3 chromedriver + 680371
+8   chromedriver                        0x00000001030977ce chromedriver + 686030
+9   chromedriver                        0x000000010344e642 chromedriver + 4580930
+10  chromedriver                        0x00000001034539cc chromedriver + 4602316
+11  chromedriver                        0x0000000103433e11 chromedriver + 4472337
+12  chromedriver                        0x0000000103454746 chromedriver + 4605766
+13  chromedriver                        0x000000010342539c chromedriver + 4412316
+14  chromedriver                        0x0000000103474868 chromedriver + 4737128
+15  chromedriver                        0x0000000103474a1e chromedriver + 4737566
+16  chromedriver                        0x0000000103485e83 chromedriver + 4808323
+17  libsystem_pthread.dylib             0x00007ff807159259 _pthread_start + 125
+18  libsystem_pthread.dylib             0x00007ff807154c7b thread_start + 15
+
+[2024-01-09 15:30:33 -0600] [24882] [INFO] Worker exiting (pid: 24882)
+[2024-01-09 15:30:34 -0600] [24881] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/arbiter.py", line 609, in spawn_worker
+    worker.init_process()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/opt/anaconda3/lib/python3.8/site-packages/gunicorn/util.py", line 371, in import_app
+    mod = importlib.import_module(module)
+  File "/opt/anaconda3/lib/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1014, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 783, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/Users/sam/Documents/app.0.1/app.py", line 2, in <module>
+    from main import scraper as scraper_script
+  File "/Users/sam/Documents/app.0.1/main.py", line 45, in <module>
+    driver = webdriver.Chrome(options=options)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/chromium/webdriver.py", line 61, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 209, in __init__
+    self.start_session(capabilities)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 293, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py", line 348, in execute
+    self.error_handler.check_response(response)
+  File "/opt/anaconda3/lib/python3.8/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome failed to start: exited normally.
+  (session not created: DevToolsActivePort file doesn't exist)
+  (The process started from chrome location /Applications/Google Chrome.app/Contents/MacOS/Google Chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.)
+Stacktrace:
+0   chromedriver                        0x000000010be14cc8 chromedriver + 4844744
+1   chromedriver                        0x000000010be0c243 chromedriver + 4809283
+2   chromedriver                        0x000000010b9da77d chromedriver + 411517
+3   chromedriver                        0x000000010ba12849 chromedriver + 641097
+4   chromedriver                        0x000000010ba0ed55 chromedriver + 626005
+5   chromedriver                        0x000000010ba60833 chromedriver + 960563
+6   chromedriver                        0x000000010ba54a63 chromedriver + 911971
+7   chromedriver                        0x000000010ba1c1b3 chromedriver + 680371
+8   chromedriver                        0x000000010ba1d7ce chromedriver + 686030
+9   chromedriver                        0x000000010bdd4642 chromedriver + 4580930
+10  chromedriver                        0x000000010bdd99cc chromedriver + 4602316
+11  chromedriver                        0x000000010bdb9e11 chromedriver + 4472337
+12  chromedriver                        0x000000010bdda746 chromedriver + 4605766
+13  chromedriver                        0x000000010bdab39c chromedriver + 4412316
+14  chromedriver                        0x000000010bdfa868 chromedriver + 4737128
+15  chromedriver                        0x000000010bdfaa1e chromedriver + 4737566
+16  chromedriver                        0x000000010be0be83 chromedriver + 4808323
+17  libsystem_pthread.dylib             0x00007ff807159259 _pthread_start + 125
+18  libsystem_pthread.dylib             0x00007ff807154c7b thread_start + 15
+
+[2024-01-09 15:30:34 -0600] [24881] [INFO] Worker exiting (pid: 24881)
+[2024-01-09 15:30:34 -0600] [24878] [ERROR] Worker (pid:24882) exited with code 3
+[2024-01-09 15:30:34 -0600] [24878] [ERROR] Worker (pid:24883) was sent SIGTERM!
+[2024-01-09 15:30:34 -0600] [24878] [ERROR] Worker (pid:24881) was sent SIGTERM!
+[2024-01-09 15:30:34 -0600] [24878] [ERROR] Shutting down: Master
+[2024-01-09 15:30:34 -0600] [24878] [ERROR] Reason: Worker failed to boot.

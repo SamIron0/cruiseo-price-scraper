@@ -1,3 +1,5 @@
 .env
 userProfile/
 __pycache__/
+.log
+.out
