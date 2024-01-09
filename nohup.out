@@ -1,0 +1,8 @@
+nohup: ./ngrok: No such file or directory
+[2024-01-09 14:28:15 -0600] [20101] [INFO] Starting gunicorn 21.2.0
+[2024-01-09 14:28:15 -0600] [20101] [INFO] Listening at: http://127.0.0.1:8000 (20101)
+[2024-01-09 14:28:15 -0600] [20101] [INFO] Using worker: sync
+[2024-01-09 14:28:15 -0600] [20110] [INFO] Booting worker with pid: 20110
+[2024-01-09 14:28:15 -0600] [20111] [INFO] Booting worker with pid: 20111
+[2024-01-09 14:28:15 -0600] [20112] [INFO] Booting worker with pid: 20112
+[2024-01-09 14:28:15 -0600] [20113] [INFO] Booting worker with pid: 20113

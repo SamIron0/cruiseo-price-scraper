@@ -238,7 +238,3 @@ def scraper():
 
         return "trip price: " + price.text
 
-
-if __name__ == "__main__":
-    scraper()
-    time.sleep(100)
