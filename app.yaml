@@ -2,3 +2,4 @@ runtime: python39
 entrypoint: gunicorn -w 4 -b :$PORT app:app --timeout 300
 env_variables:
   CHROMEDRIVER_PATH: "./chromedriver-mac-x64/chromedriver"  # Update with your chromedriver path
+

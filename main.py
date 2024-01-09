@@ -25,7 +25,7 @@ load_dotenv()
 
 options = webdriver.ChromeOptions()
 options.add_argument("user-data-dir=./userProfile")
-options.add_argument("--headless")
+#options.add_argument("--headless")
 options.add_argument(
     "--window-size=600,600"
 )
