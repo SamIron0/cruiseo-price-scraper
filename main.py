@@ -120,7 +120,6 @@ def generate_uber_url(drop, pickup, vehicle):
 drop_location = {
     "addressLine1": "80 Bison Dr",
     "addressLine2": "Winnipeg, Manitoba R3T 4Z7",
-    "id": "3aafb376-6f73-d4f7-1139-4d7fcd87d3ba",
     "source": "SEARCH",
     "latitude": 49.8011215,
     "longitude": -97.1622077,
@@ -130,7 +129,6 @@ drop_location = {
 pickup_location = {
     "addressLine1": "2525 Pembina Hwy",
     "addressLine2": "Winnipeg, Manitoba R3T 6H3",
-    "id": "3037dafa-cf26-e6b4-2614-c648fde19de8",
     "source": "SEARCH",
     "latitude": 49.800397,
     "longitude": -97.157845,
@@ -138,14 +136,14 @@ pickup_location = {
 }
 
 
-def login():
+def login(origin, destination):
     print("########### Signing in to Uber Webpage")
 
     # vehicle type doesnt need to  be defined
     vehicle_type = ""
 
     # Generate the Uber Selection URL
-    uber_selection_url = generate_uber_url(drop_location, pickup_location, vehicle_type)
+    uber_selection_url = generate_uber_url(destination, origin, vehicle_type)
 
     try:
         driver.get(uber_selection_url)
@@ -200,10 +198,10 @@ def download():
         print(f"Error retrieving data: {e}")
 
 
-def scraper():
+def scraper(origin, destination):
     # Check if the element is found
-    vehicle_type = "UberX"
-    uber_selection_url = generate_uber_url(drop_location, pickup_location, vehicle_type)
+    vehicle_type = ""
+    uber_selection_url = generate_uber_url(destination, origin, vehicle_type)
     try:
         driver.get(uber_selection_url)
 
@@ -223,13 +221,13 @@ def scraper():
         )
         # If the element is found, download directly
         price = download()
-        return "trip price: " + price.text
+        return price.text
 
     except TimeoutException:
         # Handle the timeout exception here
         print("Timeout exception occurred. Assuming not logged in.")
         try:
-            login()
+            login(origin, destination)
             price = download()
 
         except NoSuchElementException as e:
