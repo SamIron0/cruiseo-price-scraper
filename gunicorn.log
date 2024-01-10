@@ -1,6 +1,164 @@
-[2024-01-10 10:57:00 -0600] [42836] [INFO] Starting gunicorn 21.2.0
-[2024-01-10 10:57:00 -0600] [42836] [INFO] Listening at: http://0.0.0.0:8000 (42836)
-[2024-01-10 10:57:00 -0600] [42836] [INFO] Using worker: sync
-[2024-01-10 10:57:00 -0600] [42838] [INFO] Booting worker with pid: 42838
-[2024-01-10 10:57:00 -0600] [42839] [INFO] Booting worker with pid: 42839
-[2024-01-10 10:57:00 -0600] [42840] [INFO] Booting worker with pid: 42840
+[2024-01-10 12:04:55 -0600] [44810] [INFO] Starting gunicorn 21.2.0
+[2024-01-10 12:04:55 -0600] [44810] [INFO] Listening at: http://0.0.0.0:8000 (44810)
+[2024-01-10 12:04:55 -0600] [44810] [INFO] Using worker: sync
+[2024-01-10 12:04:55 -0600] [44812] [INFO] Booting worker with pid: 44812
+[2024-01-10 12:04:55 -0600] [44814] [INFO] Booting worker with pid: 44814
+[2024-01-10 12:04:55 -0600] [44815] [INFO] Booting worker with pid: 44815
+[2024-01-10 12:26:02 -0600] [44810] [INFO] Handling signal: term
+[2024-01-10 12:26:06 -0600] [44815] [INFO] Worker exiting (pid: 44815)
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+[2024-01-10 12:26:06 -0600] [44812] [INFO] Worker exiting (pid: 44812)
+[2024-01-10 12:26:06 -0600] [44814] [INFO] Worker exiting (pid: 44814)
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+########### Fetching Elements from Uber Webpage
+[2024-01-10 12:26:08 -0600] [44810] [INFO] Shutting down: Master
