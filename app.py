@@ -20,10 +20,12 @@ app = Flask(__name__)
 # Initialize Chrome driver outside of the request handler
 options = webdriver.ChromeOptions()
 options.add_argument("user-data-dir=./userProfile-1")
+
 # options.add_argument("--headless")
 options.add_argument("--window-size=600,600")
-
+# options.add_argument("--headless")
 options.add_experimental_option(
+
     "excludeSwitches",
     [
         "ignore-certificate-errors",
@@ -32,10 +34,12 @@ options.add_experimental_option(
         "disable-client-side-phishing-detection",
     ],
 )
+
 # LINK TO Chromedriver goes here (Need to change)
 chromedriver = "./chromedriver-mac-x64/chromedriver"
 os.environ["webdriver.chrome.driver"] = chromedriver
-chrome_driver = webdriver.Chrome(options=options)
+chrome_driver_1 = webdriver.Chrome(options=options)
+#chrome_driver_2 = webdriver.Chrome(options=options2)
 
 imap_ssl_host = "imap.gmail.com"
 imap_ssl_port = 993
@@ -217,12 +221,13 @@ def execute_script_1():
         destination = data.get("destination", {})
 
         # Pass the extracted data and the Chrome instance to the scraper_script
-        result = scraper(chrome_driver, origin, destination)
+        result = scraper(chrome_driver_1, origin, destination)
 
         return jsonify({"result": result})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+from main import scraper as scraper2
 
 @app.route("/execute-script-2", methods=["POST"])
 def execute_script_2():
@@ -235,120 +240,11 @@ def execute_script_2():
         destination = data.get("destination", {})
 
         # Pass the extracted data and the Chrome instance to the scraper_script
-        result = scraper(chrome_driver, origin, destination)
+        result = scraper2(origin, destination)
 
         return jsonify({"result": result})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-
-@app.route("/execute-script-3", methods=["POST"])
-def execute_script_3():
-    try:
-        # Get JSON data from the request
-        data = request.get_json()
-
-        # Extract origin and destination from the JSON data
-        origin = data.get("origin", {})
-        destination = data.get("destination", {})
-
-        # Pass the extracted data and the Chrome instance to the scraper_script
-        result = scraper(chrome_driver, origin, destination)
-
-        return jsonify({"result": result})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
-@app.route("/execute-script-4", methods=["POST"])
-def execute_script_4():
-    try:
-        # Get JSON data from the request
-        data = request.get_json()
-
-        # Extract origin and destination from the JSON data
-        origin = data.get("origin", {})
-        destination = data.get("destination", {})
-
-        # Pass the extracted data and the Chrome instance to the scraper_script
-        result = scraper(chrome_driver, origin, destination)
-
-        return jsonify({"result": result})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
-@app.route("/execute-script-5", methods=["POST"])
-def execute_script_5():
-    try:
-        # Get JSON data from the request
-        data = request.get_json()
-
-        # Extract origin and destination from the JSON data
-        origin = data.get("origin", {})
-        destination = data.get("destination", {})
-
-        # Pass the extracted data and the Chrome instance to the scraper_script
-        result = scraper(chrome_driver, origin, destination)
-
-        return jsonify({"result": result})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
-@app.route("/execute-script-6", methods=["POST"])
-def execute_script_6():
-    try:
-        # Get JSON data from the request
-        data = request.get_json()
-
-        # Extract origin and destination from the JSON data
-        origin = data.get("origin", {})
-        destination = data.get("destination", {})
-
-        # Pass the extracted data and the Chrome instance to the scraper_script
-        result = scraper(chrome_driver, origin, destination)
-
-        return jsonify({"result": result})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
-@app.route("/execute-script-7", methods=["POST"])
-def execute_script_7():
-    try:
-        # Get JSON data from the request
-        data = request.get_json()
-
-        # Extract origin and destination from the JSON data
-        origin = data.get("origin", {})
-        destination = data.get("destination", {})
-
-        # Pass the extracted data and the Chrome instance to the scraper_script
-        result = scraper(chrome_driver, origin, destination)
-
-        return jsonify({"result": result})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
-@app.route("/execute-script-8", methods=["POST"])
-def execute_script_8():
-    try:
-        # Get JSON data from the request
-        data = request.get_json()
-
-        # Extract origin and destination from the JSON data
-        origin = data.get("origin", {})
-        destination = data.get("destination", {})
-
-        # Pass the extracted data and the Chrome instance to the scraper_script
-        result = scraper(chrome_driver, origin, destination)
-
-        return jsonify({"result": result})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5001))
