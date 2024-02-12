@@ -1,9 +1,11 @@
+import uvicorn
+from fastapi import FastAPI, Request
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
-from flask import Flask, request, jsonify
+from fastapi.responses import JSONResponse
 import json
 import os
 import time
@@ -13,19 +15,15 @@ from email.header import decode_header
 from selenium import webdriver
 from dotenv import load_dotenv
 
+app = FastAPI()
+
 load_dotenv()
+global gmail, password
 
-app = Flask(__name__)
-
-# Initialize Chrome driver outside of the request handler
 options = webdriver.ChromeOptions()
 options.add_argument("user-data-dir=./userProfile-1")
-
-# options.add_argument("--headless")
 options.add_argument("--window-size=600,600")
-# options.add_argument("--headless")
 options.add_experimental_option(
-
     "excludeSwitches",
     [
         "ignore-certificate-errors",
@@ -39,15 +37,40 @@ options.add_experimental_option(
 chromedriver = "./chromedriver-mac-x64/chromedriver"
 os.environ["webdriver.chrome.driver"] = chromedriver
 chrome_driver_1 = webdriver.Chrome(options=options)
-#chrome_driver_2 = webdriver.Chrome(options=options2)
+
+options2 = webdriver.ChromeOptions()
+options2.add_argument("user-data-dir=./userProfile-2")
+options2.add_argument("--window-size=600,600")
+options2.add_experimental_option(
+    "excludeSwitches",
+    [
+        "ignore-certificate-errors",
+        "safebrowsing-disable-download-protection",
+        "safebrowsing-disable-auto-update",
+        "disable-client-side-phishing-detection",
+    ],
+)
+
+chrome_driver_2 = webdriver.Chrome(options=options2)
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 imap_ssl_host = "imap.gmail.com"
 imap_ssl_port = 993
-gmail = "fatitomifin@gmail.com"
-password = "miph lfrq punz jjnz"
+gmail2 = os.getenv("FATI_GMAIL")
+gmail1 = os.getenv("TELA_GMAIL")
+gmail3 = os.getenv("QUINCY_GMAIL")
+
+password2 = os.getenv("FATI_GMAIL_PASSWORD")
+password1 = os.getenv("TELA_GMAIL_PASSWORD")
+password3 = os.getenv("QUINCY_GMAIL_PASSWORD")
+gmail = gmail1
+password = password1
 
 
-def getEmailCode(driver):
+def getEmailCode(driver, gmail, password):
     time.sleep(4)
     # Connect to Gmail IMAP server
     with imaplib.IMAP4_SSL(imap_ssl_host) as mail:
@@ -84,7 +107,6 @@ def getEmailCode(driver):
 
                     if number_element:
                         code_value = number_element.text.strip()
-                        print("Verification Code:", code_value)
 
                         # Exit the loop after finding the first email with the desired subject
                         return code_value
@@ -110,39 +132,22 @@ def generate_uber_url(drop, pickup, vehicle):
     return uber_url
 
 
-def login(driver, origin, destination):
+def login(driver, origin, destination, gmail, password):
     print("########### Signing in to Uber Webpage")
-
-    # vehicle type doesnt need to be defined
-    vehicle_type = ""
-
-    # Generate the Uber Selection URL
-    uber_selection_url = generate_uber_url(destination, origin, vehicle_type)
-
-    try:
-        driver.get(uber_selection_url)
-
-    except:
-        print("ERROR: Did not get Link")
-        pass
-    # time.sleep(50)
 
     email_input = driver.find_element(By.ID, "PHONE_NUMBER_or_EMAIL_ADDRESS")
     email_input.send_keys(gmail)
     continue_button = driver.find_element(By.ID, "forward-button")
     continue_button.click()
-    verification_code = getEmailCode(driver)
-
-    with open("source.html", "w", encoding="utf-8") as file:
-        file.write(driver.page_source)
-        # after clicking continue, get the code from gmail
-    # print(code)
+    verification_code = getEmailCode(driver, gmail, password)
     otp_input_ids = [
         "EMAIL_OTP_CODE-0",
         "EMAIL_OTP_CODE-1",
         "EMAIL_OTP_CODE-2",
         "EMAIL_OTP_CODE-3",
     ]
+    print("verification code: ", verification_code)
+
     for i in range(min(len(verification_code), len(otp_input_ids))):
         otp_input = driver.find_element(By.ID, otp_input_ids[i])
         otp_input.send_keys(verification_code[i])
@@ -150,13 +155,15 @@ def login(driver, origin, destination):
     # Click the forward button
     continue_button.click()
     print("########### Signed in to Uber Webpage")
+    return
 
 
 def download(driver):
     # get the data
+
     print("########### Fetching Elements from Uber Webpage")
     try:
-        price = WebDriverWait(driver, 20).until(
+        price = WebDriverWait(driver, 5).until(
             EC.presence_of_element_located(
                 (
                     By.XPATH,
@@ -164,27 +171,68 @@ def download(driver):
                 )
             )
         )
+        print("########### price fetched")
+
         return price
 
         # Write the formatted page source to a file
-    except Exception as e:
+    except TimeoutException as e:
         print(f"Error retrieving data: {e}")
 
 
-def scraper(driver, origin, destination):
+def userIsLoggedIn(driver):
+    try:
+        if driver.find_element(By.ID, "PHONE_NUMBER_or_EMAIL_ADDRESS"):
+            return False
+    except:
+        return True
+
+
+def logout(driver):
+    try:
+        print("########### Signing out of Uber Webpage")
+        driver.find_element(
+            By.XPATH, '//button[@data-buttonkey="smallHeaderRight"]'
+        ).click()
+        driver.find_element(
+            By.XPATH, '//button[@data-buttonkey="https://riders.uber.com/profile"]'
+        ).click()
+        time.sleep(2)
+        driver.find_element(By.XPATH, '//button[@data-buttonkey="logOut"]').click()
+    except:
+        print("########### Error signing out of Uber Webpage")
+    print("########### Signed out of Uber Webpage")
+
+    return
+
+
+def switch_gmail():
+    global gmail, password
+    if gmail == gmail1:
+        gmail, password = gmail2, password2
+    elif gmail == gmail2:
+        gmail, password = gmail3, password3
+    elif gmail == gmail3:
+        gmail, password = gmail1, password1
+
+
+def scraper(driver, origin, destination, linkNotGotten):
+
     # Check if the element is found
     vehicle_type = ""
     uber_selection_url = generate_uber_url(destination, origin, vehicle_type)
-    try:
-        driver.get(uber_selection_url)
 
-    except:
-        print("ERROR: Did not get Link")
-        pass
+    if linkNotGotten == True:
+        try:
+            driver.get(uber_selection_url)
+
+        except:
+            print("ERROR: Did not get Link")
+            pass
 
     try:
         # Check for the presence of the element
-        WebDriverWait(driver, 20).until(
+        WebDriverWait(driver, 5).until(
             EC.presence_of_element_located(
                 (
                     By.XPATH,
@@ -194,58 +242,60 @@ def scraper(driver, origin, destination):
         )
         # If the element is found, download directly
         price = download(driver)
+        # print("price: ", price.text)
         return price.text
 
-    except TimeoutException:
+    except Exception:
         # Handle the timeout exception here
         print("Timeout exception occurred. Assuming not logged in.")
         try:
-            login(driver, origin, destination)
-            price = download(driver)
-
-        except NoSuchElementException as e:
-            print("login failed")
+            loginStatus = userIsLoggedIn(driver)
+            # if user is logged in, log out and switch gmails
+            if loginStatus == True:
+                logout(driver)
+                print("switching gmail from ", str(gmail))
+                switch_gmail()
+                print("switched gmail to: " + str(gmail))
+            login(driver, origin, destination, gmail, password)
+            linkNotGotten = False
+            time.sleep(1)
+            # recall scraper
+            price = scraper(driver, origin, destination, linkNotGotten=False)
+            return price
+        except Exception as e:
+            print("price retrieval failed, error: " + str(e))
             return
 
-        return "trip price: " + price.text
 
-
-@app.route("/execute-script-1", methods=["POST"])
-def execute_script_1():
+@app.post("/execute-script-1")
+async def execute_script_1(request: Request):
     try:
         # Get JSON data from the request
-        data = request.get_json()
-
+        data = await request.json()
         # Extract origin and destination from the JSON data
         origin = data.get("origin", {})
         destination = data.get("destination", {})
-
+        userID = data.get("userID", {})
         # Pass the extracted data and the Chrome instance to the scraper_script
-        result = scraper(chrome_driver_1, origin, destination)
-
-        return jsonify({"result": result})
+        result = scraper(chrome_driver_1, origin, destination, linkNotGotten=True)
+        return JSONResponse({"result": result, "userID": userID})
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return JSONResponse(status_code=500, content={"error": str(e)})
 
-from main import scraper as scraper2
 
-@app.route("/execute-script-2", methods=["POST"])
-def execute_script_2():
+@app.post("/execute-script-2")
+async def execute_script_2(request: Request):
     try:
-        # Get JSON data from the request
-        data = request.get_json()
-
-        # Extract origin and destination from the JSON data
+        data = await request.json()
         origin = data.get("origin", {})
         destination = data.get("destination", {})
-
-        # Pass the extracted data and the Chrome instance to the scraper_script
-        result = scraper2(origin, destination)
-
-        return jsonify({"result": result})
+        userID = data.get("userID", {})
+        result = scraper(chrome_driver_2, origin, destination, linkNotGotten=True)
+        return JSONResponse({"result": result, "userID": userID})
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return JSONResponse(status_code=500, content={"error": str(e)})
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5001))
-    app.run(host="0.0.0.0", port=port)
+    uvicorn.run(app, host="0.0.0.0", port=port)

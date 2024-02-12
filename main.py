@@ -160,7 +160,7 @@ def login(origin, destination):
     verification_code = getEmailCode()
 
         
-    with open("source.html", "w", encoding="utf-8") as file:
+    with open("html", "w", encoding="utf-8") as file:
         file.write(driver.page_source)
         # after clicking continue, get the code from gmail
     # print(code)
